@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://m6pijqjbcu2s"]
+
+[ext_resource type="Texture2D" uid="uid://dcaw4k47gh0qm" path="res://Sprites/Guitarist.png" id="1_7y48p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iebjx"]
+size = Vector2(47, 87)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gges6"]
+atlas = ExtResource("1_7y48p")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wr80r"]
+atlas = ExtResource("1_7y48p")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1nc37"]
+atlas = ExtResource("1_7y48p")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m8tld"]
+atlas = ExtResource("1_7y48p")
+region = Rect2(128, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_paowv"]
+atlas = ExtResource("1_7y48p")
+region = Rect2(0, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_exw2e"]
+atlas = ExtResource("1_7y48p")
+region = Rect2(128, 256, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_63jev"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gges6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wr80r")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1nc37")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m8tld")
+}],
+"loop": true,
+"name": &"mild",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_paowv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_exw2e")
+}],
+"loop": true,
+"name": &"uber",
+"speed": 2.0
+}]
+
+[node name="Guitarist" type="Area2D" unique_id=6708523]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1319513716]
+position = Vector2(6.5, 17.5)
+shape = SubResource("RectangleShape2D_iebjx")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=689605742]
+sprite_frames = SubResource("SpriteFrames_63jev")
+autoplay = "default"
