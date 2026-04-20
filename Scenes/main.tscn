@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://bgpgswvgefua6"]
 
+[ext_resource type="Script" uid="uid://cnakvjb05ghco" path="res://Scenes/main.gd" id="1_8gbba"]
 [ext_resource type="PackedScene" uid="uid://dg7xy68gqrrrt" path="res://Scenes/player.tscn" id="1_jjgbg"]
 [ext_resource type="Texture2D" uid="uid://clkkj2oiae1ro" path="res://icon.svg" id="2_bo1nx"]
 
@@ -7,6 +8,7 @@
 size = Vector2(127.62463, 127.40465)
 
 [node name="Main" type="Node2D" unique_id=883610891]
+script = ExtResource("1_8gbba")
 
 [node name="BG" type="Node2D" parent="." unique_id=1916688669]
 
@@ -15,6 +17,8 @@ size = Vector2(127.62463, 127.40465)
 [node name="Entitis" type="Node2D" parent="Main" unique_id=456509761]
 
 [node name="Player" parent="Main/Entitis" unique_id=663725910 instance=ExtResource("1_jjgbg")]
+
+[node name="Projectiles" type="Node2D" parent="Main" unique_id=1620820923]
 
 [node name="FG" type="Node2D" parent="." unique_id=1837992757]
 
@@ -28,3 +32,5 @@ texture = ExtResource("2_bo1nx")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Icon/StaticBody2D" unique_id=1916882321]
 position = Vector2(2.861023e-06, 0)
 shape = SubResource("RectangleShape2D_8gbba")
+
+[connection signal="shoot" from="Main/Entitis/Player" to="." method="_on_player_shoot"]

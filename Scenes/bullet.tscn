@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://ujxqg6guldho"]
+
+[ext_resource type="Script" uid="uid://c0a388x5tc64a" path="res://Scenes/bullet.gd" id="1_oduel"]
+[ext_resource type="Texture2D" uid="uid://bslfaf17oodsb" path="res://Sprites/Bullet.png" id="1_xjght"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oduel"]
+size = Vector2(4, 2)
+
+[node name="Bullet" type="Area2D" unique_id=523490862]
+script = ExtResource("1_oduel")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=110880753]
+shape = SubResource("RectangleShape2D_oduel")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1003115903]
+texture = ExtResource("1_xjght")
+
+[node name="KillTimer" type="Timer" parent="." unique_id=879326904]
+wait_time = 5.0
+one_shot = true
+
+[connection signal="timeout" from="KillTimer" to="." method="_on_kill_timer_timeout"]

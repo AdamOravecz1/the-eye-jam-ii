@@ -215,3 +215,6 @@ animation = &"shoot"
 autoplay = "default"
 frame = 1
 frame_progress = 1.0
+
+[node name="BarrelEnd" type="Node2D" parent="WeaponAnchorPoint/RecoilAnchorPoint/Weapon" unique_id=617597703]
+position = Vector2(8, -5)

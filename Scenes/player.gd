@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+signal shoot(pos, dir)
+
 @export_group('move')
 @export var speed := 200
 @export var acceleration := 700
@@ -67,6 +69,7 @@ func get_input():
 	# shoot
 	if Input.is_action_just_pressed("shoot"):
 		weapon.play("shoot")
+		shoot.emit($WeaponAnchorPoint/RecoilAnchorPoint/Weapon/BarrelEnd.global_position, weapon_anchor.rotation + $WeaponAnchorPoint/RecoilAnchorPoint.rotation )
 		if weapon.flip_v:
 			recoil_rotation = recoil_angle
 		else:
@@ -103,9 +106,11 @@ func rotate_weapon():
 	
 	if get_global_mouse_position().x > global_position.x:
 		weapon.flip_v = false
+		$WeaponAnchorPoint/RecoilAnchorPoint/Weapon/BarrelEnd.position.y = -5
 		$Head.flip_h = false
 	else:
 		weapon.flip_v = true
+		$WeaponAnchorPoint/RecoilAnchorPoint/Weapon/BarrelEnd.position.y = 5
 		$Head.flip_h = true
 		
 func update_recoil(delta):
