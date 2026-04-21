@@ -4,12 +4,13 @@
 [ext_resource type="Texture2D" uid="uid://bslfaf17oodsb" path="res://Sprites/Bullet.png" id="1_xjght"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oduel"]
-size = Vector2(4, 2)
+size = Vector2(19, 2)
 
 [node name="Bullet" type="Area2D" unique_id=523490862]
 script = ExtResource("1_oduel")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=110880753]
+position = Vector2(7.5, 0)
 shape = SubResource("RectangleShape2D_oduel")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1003115903]
@@ -19,4 +20,5 @@ texture = ExtResource("1_xjght")
 wait_time = 5.0
 one_shot = true
 
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="KillTimer" to="." method="_on_kill_timer_timeout"]

@@ -5,6 +5,7 @@ var rotation_angle: float
 var speed: int = 1000
 
 
+
 func setup(pos, rot):
 	position = pos 
 	rotation_angle = rot
@@ -18,4 +19,9 @@ func _process(delta):
 
 
 func _on_kill_timer_timeout():
+	queue_free()
+
+
+func _on_body_entered(body: Node2D) -> void:
+	visible = false
 	queue_free()
