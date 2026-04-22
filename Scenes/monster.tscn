@@ -1,0 +1,486 @@
+[gd_scene format=3 uid="uid://co8no6ii4o2uy"]
+
+[ext_resource type="Script" uid="uid://bis7s0m61bmwb" path="res://Scenes/monster.gd" id="1_i44lo"]
+[ext_resource type="Texture2D" uid="uid://bvdfivy2x25fq" path="res://Sprites/Monster2.png" id="1_xhoai"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i44lo"]
+radius = 31.0
+
+[sub_resource type="Animation" id="Animation_i44lo"]
+resource_name = "Death"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HindLegRPivot:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -1.1546474]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HindLegRPivot:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(23, 40), Vector2(20.175385, 52.37805)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FrontLegRPivot:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-9, 28), Vector2(-14, 52.17041)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("FrontLegRPivot:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.4666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0267159]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BodyPivot:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.4666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 29), Vector2(-5.2085657, 50)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("BodyPivot:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.4666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -0.3526949]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("BodyPivot/HeadPivot:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.4666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-15.719915, -17.259323), Vector2(-15.809753, -14.344078)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("BodyPivot/HeadPivot:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.4666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -0.3066325]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("HindLegLPivot:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.4666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(21, 42), Vector2(18.98935, 54.9458)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("HindLegLPivot:rotation")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.4666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -1.6486263]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("FrontLegLPivot:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 0.4666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-7, 28), Vector2(-12.12311, 51.479553)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("FrontLegLPivot:rotation")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 0.4666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0526649]
+}
+
+[sub_resource type="Animation" id="Animation_hyvb2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FrontLegLPivot:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.31204972]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FrontLegRPivot:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.23987149]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HindLegRPivot:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.50801975]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HindLegLPivot:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.31013545]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BodyPivot:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 29)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("BodyPivot:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.07693799]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("BodyPivot/HeadPivot:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-15.719915, -17.259323)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("BodyPivot/HeadPivot:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.05611966]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("HindLegRPivot:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(23, 40)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("FrontLegRPivot:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-9, 28)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("HindLegLPivot:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(21, 42)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("FrontLegLPivot:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-7, 28)]
+}
+
+[sub_resource type="Animation" id="Animation_ujuxu"]
+resource_name = "Run"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FrontLegLPivot:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.16666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.31204972, 0.21144351]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FrontLegRPivot:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.16666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.23987149, -0.4632439]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HindLegRPivot:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.16666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.50801975, 0.7991939]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HindLegLPivot:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.16666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.31013545, -0.56771123]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BodyPivot:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.16666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 29), Vector2(-2.0000002, 28.000002)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("BodyPivot:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.16666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.07693799, -0.082289845]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("BodyPivot/HeadPivot:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.16666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-15.719915, -17.259323), Vector2(-14.630705, -17.261011)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("BodyPivot/HeadPivot:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.16666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.05611966, 0.07045497]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cyu0s"]
+_data = {
+&"Death": SubResource("Animation_i44lo"),
+&"RESET": SubResource("Animation_hyvb2"),
+&"Run": SubResource("Animation_ujuxu")
+}
+
+[node name="Monster" type="CharacterBody2D" unique_id=1451736512]
+script = ExtResource("1_i44lo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=352165183]
+position = Vector2(0, 26)
+shape = SubResource("CircleShape2D_i44lo")
+
+[node name="HindLegRPivot" type="Node2D" parent="." unique_id=1961961055]
+position = Vector2(23, 40)
+rotation = 0.50801975
+
+[node name="HindLegR" type="Sprite2D" parent="HindLegRPivot" unique_id=272889045]
+position = Vector2(-23, -40)
+texture = ExtResource("1_xhoai")
+hframes = 3
+vframes = 3
+frame = 6
+
+[node name="FrontLegRPivot" type="Node2D" parent="." unique_id=271863313]
+position = Vector2(-9, 28)
+rotation = -0.23987149
+
+[node name="FrontLegR" type="Sprite2D" parent="FrontLegRPivot" unique_id=876034819]
+position = Vector2(9, -28)
+texture = ExtResource("1_xhoai")
+hframes = 3
+vframes = 3
+frame = 5
+
+[node name="BodyPivot" type="Node2D" parent="." unique_id=387960182]
+position = Vector2(0, 29)
+rotation = -0.07693799
+
+[node name="Body" type="Sprite2D" parent="BodyPivot" unique_id=1293590586]
+position = Vector2(0, -26)
+texture = ExtResource("1_xhoai")
+hframes = 3
+vframes = 3
+frame = 2
+
+[node name="HeadPivot" type="Node2D" parent="BodyPivot" unique_id=1273989051]
+position = Vector2(-15.719915, -17.259323)
+rotation = -0.05611966
+
+[node name="Head" type="Sprite2D" parent="BodyPivot/HeadPivot" unique_id=1655742729]
+position = Vector2(16, -5)
+texture = ExtResource("1_xhoai")
+hframes = 3
+vframes = 3
+frame = 3
+
+[node name="HindLegLPivot" type="Node2D" parent="." unique_id=1010189311]
+position = Vector2(21, 42)
+rotation = 0.31013545
+
+[node name="HindLegL" type="Sprite2D" parent="HindLegLPivot" unique_id=187314585]
+position = Vector2(-21, -42)
+texture = ExtResource("1_xhoai")
+hframes = 3
+vframes = 3
+
+[node name="FrontLegLPivot" type="Node2D" parent="." unique_id=1457615631]
+position = Vector2(-7, 28)
+rotation = -0.31204972
+
+[node name="FrontLegL" type="Sprite2D" parent="FrontLegLPivot" unique_id=1937189840]
+position = Vector2(7, -28)
+texture = ExtResource("1_xhoai")
+hframes = 3
+vframes = 3
+frame = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2075478647]
+libraries/ = SubResource("AnimationLibrary_cyu0s")
+autoplay = &"Run"

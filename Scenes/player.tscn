@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b72rotnk5anci" path="res://Sprites/Player.png" id="1_v0iea"]
 [ext_resource type="Texture2D" uid="uid://bcfcgj1y4oxqs" path="res://Sprites/Gun.png" id="3_6t5aa"]
 [ext_resource type="Texture2D" uid="uid://d35qp7xtx8fho" path="res://Sprites/Light.png" id="4_vgqql"]
+[ext_resource type="Texture2D" uid="uid://cwym70cuwy8ty" path="res://Sprites/GeigerCounter.png" id="5_fkybt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6t5aa"]
 size = Vector2(32, 101)
@@ -226,6 +227,13 @@ position = Vector2(8, -5)
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=718141887]
 position = Vector2(1.1368684e-13, -22.000008)
 scale = Vector2(151.03127, 814)
+energy = 0.8
 shadow_enabled = true
 texture = ExtResource("4_vgqql")
 texture_scale = 0.01
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1470427456]
+
+[node name="GeigerCounter" type="Sprite2D" parent="CanvasLayer" unique_id=1485747603]
+position = Vector2(146, 284)
+texture = ExtResource("5_fkybt")
