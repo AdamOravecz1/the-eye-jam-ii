@@ -29,6 +29,7 @@ var recoil_rotation := 0.0
 @onready var weapon_anchor = $WeaponAnchorPoint
 
 func _process(delta):
+
 	get_input()
 	apply_gravity(delta)
 	apply_movement(delta)
@@ -116,4 +117,6 @@ func rotate_weapon():
 func update_recoil(delta):
 	recoil_rotation = lerp(recoil_rotation, 0.0, recoil_speed * delta)
 	$WeaponAnchorPoint/RecoilAnchorPoint.rotation = recoil_rotation
+	
+
 		

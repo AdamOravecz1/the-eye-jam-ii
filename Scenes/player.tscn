@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://b0ooga2ndgu6r" path="res://Scenes/player.gd" id="1_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://b72rotnk5anci" path="res://Sprites/Player.png" id="1_v0iea"]
 [ext_resource type="Texture2D" uid="uid://bcfcgj1y4oxqs" path="res://Sprites/Gun.png" id="3_6t5aa"]
+[ext_resource type="Texture2D" uid="uid://d35qp7xtx8fho" path="res://Sprites/Light.png" id="4_vgqql"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6t5aa"]
 size = Vector2(32, 101)
@@ -174,6 +175,7 @@ animations = [{
 }]
 
 [node name="Player" type="CharacterBody2D" unique_id=663725910]
+light_mask = 3
 script = ExtResource("1_cvnsp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2110513421]
@@ -181,11 +183,13 @@ position = Vector2(0, -11)
 shape = SubResource("RectangleShape2D_6t5aa")
 
 [node name="Body" type="AnimatedSprite2D" parent="." unique_id=309636273]
+light_mask = 3
 sprite_frames = SubResource("SpriteFrames_8erm5")
 animation = &"idle"
 autoplay = "idle"
 
 [node name="Head" type="AnimatedSprite2D" parent="." unique_id=1934258406]
+light_mask = 3
 position = Vector2(0, -46)
 sprite_frames = SubResource("SpriteFrames_7dp3o")
 animation = &"idle"
@@ -218,3 +222,10 @@ frame_progress = 1.0
 
 [node name="BarrelEnd" type="Node2D" parent="WeaponAnchorPoint/RecoilAnchorPoint/Weapon" unique_id=617597703]
 position = Vector2(8, -5)
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=718141887]
+position = Vector2(1.1368684e-13, -22.000008)
+scale = Vector2(151.03127, 814)
+shadow_enabled = true
+texture = ExtResource("4_vgqql")
+texture_scale = 0.01
