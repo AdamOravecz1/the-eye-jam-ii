@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://dc6lxblrpilpc"]
+
+[ext_resource type="Texture2D" uid="uid://bqu0iv1jqlhf6" path="res://Sprites/Decays.png" id="1_1rr6e"]
+[ext_resource type="PackedScene" uid="uid://babs2a1gd7aw6" path="res://Scenes/interaction_area.tscn" id="2_a0j5y"]
+[ext_resource type="Script" uid="uid://gk5t13cayt63" path="res://Scenes/relic.gd" id="2_aikx1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_aikx1"]
+
+[node name="Relic" type="Sprite2D" unique_id=1454720874]
+texture = ExtResource("1_1rr6e")
+hframes = 2
+vframes = 2
+script = ExtResource("2_aikx1")
+
+[node name="InteractionArea" parent="." unique_id=41114894 instance=ExtResource("2_a0j5y")]
+action_name = "pick up"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea" unique_id=1702426214]
+shape = SubResource("CircleShape2D_aikx1")

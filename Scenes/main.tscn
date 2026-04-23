@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://dgqdp75gqmrl1" path="res://Sprites/WindowLight.png" id="10_fdnlq"]
 [ext_resource type="PackedScene" uid="uid://co8no6ii4o2uy" path="res://Scenes/monster.tscn" id="12_wsu2k"]
 [ext_resource type="Shader" uid="uid://by5tfty56bpbv" path="res://Shaders/light.gdshader" id="13_jkdf5"]
+[ext_resource type="PackedScene" uid="uid://dc6lxblrpilpc" path="res://Scenes/relic.tscn" id="16_k12tt"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8gbba"]
 texture = ExtResource("2_8gbba")
@@ -762,7 +763,11 @@ material = SubResource("ShaderMaterial_wsu2k")
 position = Vector2(2149, -167)
 texture = ExtResource("10_fdnlq")
 
+[node name="Relic" parent="FG" unique_id=1454720874 instance=ExtResource("16_k12tt")]
+position = Vector2(2728, -143)
+
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1893787319]
+visible = false
 light_mask = 0
 visibility_layer = 0
 color = Color(0, 0, 0, 1)

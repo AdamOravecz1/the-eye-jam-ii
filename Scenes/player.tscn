@@ -238,6 +238,7 @@ position = Vector2(10, -1)
 texture = ExtResource("4_3smsa")
 
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=718141887]
+visible = false
 position = Vector2(1.1368684e-13, -22.000008)
 scale = Vector2(151.03127, 814)
 energy = 0.8
