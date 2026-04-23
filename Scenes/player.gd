@@ -159,7 +159,7 @@ func death():
 	var dead_head := dead_head_scene.instantiate()
 	add_child(dead_head)
 	dead_head.position.y -= 32
-
+	$GPUParticles2D.emitting = true
 
 	var random_x := randf_range(-100, 100)
 	var upward := randf_range(-200, -350)

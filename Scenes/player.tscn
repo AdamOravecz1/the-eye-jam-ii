@@ -176,6 +176,13 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_x3wgy"]
+particle_flag_disable_z = true
+spread = 130.0
+flatness = 0.5
+initial_velocity_max = 10.0
+gravity = Vector3(0, -98, 0)
+
 [node name="Player" type="CharacterBody2D" unique_id=663725910 groups=["Player"]]
 light_mask = 3
 script = ExtResource("1_cvnsp")
@@ -248,3 +255,10 @@ offset_bottom = 174.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("6_x3wgy")
 text = "9/8"
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1980717853]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(0, -37)
+emitting = false
+amount = 42
+process_material = SubResource("ParticleProcessMaterial_x3wgy")
