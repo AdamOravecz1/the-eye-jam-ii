@@ -31,6 +31,10 @@ var recoil_rotation := 0.0
 @onready var weapon_anchor = $WeaponAnchorPoint
 @onready var muzzle_flash = $WeaponAnchorPoint/RecoilAnchorPoint/Weapon/BarrelEnd/PointLight2D
 
+@onready var geiger_counter_needle: Sprite2D = $CanvasLayer/GeigerCounterNeedle
+var wobble_time := 0.0
+var carrying = false
+
 var alive = true
 
 var ammo = 9
@@ -38,6 +42,7 @@ var loaded_in = 8
 var reloading = false
 
 func _process(delta):
+	geiger_counter(delta)
 	apply_gravity(delta)
 	if alive:
 		get_input()
@@ -173,3 +178,42 @@ func death():
 	dead_head.apply_impulse(Vector2(random_x, upward))
 	
 	
+func get_closest_item():
+	var items = get_tree().get_nodes_in_group("items")
+	
+	var closest_distance = INF
+	
+	for item in items:
+		var dist = global_position.distance_to(item.global_position)
+		
+		if dist < closest_distance:
+			closest_distance = dist
+	
+	return closest_distance
+
+func geiger_counter(delta):
+	wobble_time += delta
+	
+	var dist = get_closest_item()
+	
+	if dist == null:
+		return
+
+	
+	dist = clamp(dist, 0, 200)
+	
+	var t = 1.0 - (dist / 200.0)
+	
+	var base_angle = lerp(-35.0, 35.0, t)
+	
+	var wobble_strength = lerp(1.0, 1.5, t)
+	
+	var wobble_speed = lerp(2.0, 80.0, t)
+	
+	var wobble = sin(wobble_time * wobble_speed) * wobble_strength
+	
+	if carrying:
+		base_angle = 35
+		wobble = sin(wobble_time * 80) * 1.5
+	
+	geiger_counter_needle.rotation_degrees = base_angle + wobble

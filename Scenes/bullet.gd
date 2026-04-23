@@ -4,8 +4,6 @@ var direction: Vector2
 var rotation_angle: float
 var speed: int = 1000
 
-
-
 func setup(pos, rot):
 	position = pos 
 	rotation_angle = rot

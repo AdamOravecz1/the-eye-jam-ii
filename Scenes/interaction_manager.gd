@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var player = null
+
 
 @onready var label = $Label
 
@@ -9,10 +9,9 @@ var base_text = "[E] to "
 var active_areas = []
 var can_interact = true
 
-func set_player():
-	player = get_tree().get_first_node_in_group("Player")
-	if player == null:
-		print("Player node not found in the scene.")
+
+@onready var player = get_tree().get_first_node_in_group("Player")
+
 
 func register_area(area: InteractionArea):
 	active_areas.push_back(area)

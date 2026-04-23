@@ -7,14 +7,15 @@
 size = Vector2(4, 2)
 
 [node name="Bullet" type="Area2D" unique_id=523490862]
-collision_layer = 3
-collision_mask = 3
+collision_layer = 10
+collision_mask = 10
 script = ExtResource("1_oduel")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=110880753]
 shape = SubResource("RectangleShape2D_oduel")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1003115903]
+modulate = Color(18.892157, 18.892157, 0, 1)
 texture = ExtResource("1_xjght")
 
 [node name="KillTimer" type="Timer" parent="." unique_id=879326904]
