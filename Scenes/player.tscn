@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://b0ooga2ndgu6r" path="res://Scenes/player.gd" id="1_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://b72rotnk5anci" path="res://Sprites/Player.png" id="1_v0iea"]
 [ext_resource type="Texture2D" uid="uid://bcfcgj1y4oxqs" path="res://Sprites/Gun.png" id="3_6t5aa"]
+[ext_resource type="Texture2D" uid="uid://b8ashm7ay68vg" path="res://Sprites/MuzzleFlash.png" id="4_3smsa"]
 [ext_resource type="Texture2D" uid="uid://d35qp7xtx8fho" path="res://Sprites/Light.png" id="4_vgqql"]
 [ext_resource type="Texture2D" uid="uid://cwym70cuwy8ty" path="res://Sprites/GeigerCounter.png" id="5_fkybt"]
 [ext_resource type="FontFile" uid="uid://xnml6jyw0iwt" path="res://Font/PixelOperator.ttf" id="6_x3wgy"]
@@ -230,6 +231,11 @@ frame_progress = 1.0
 
 [node name="BarrelEnd" type="Node2D" parent="WeaponAnchorPoint/RecoilAnchorPoint/Weapon" unique_id=617597703]
 position = Vector2(8, -5)
+
+[node name="PointLight2D" type="PointLight2D" parent="WeaponAnchorPoint/RecoilAnchorPoint/Weapon/BarrelEnd" unique_id=1215123592]
+visible = false
+position = Vector2(10, -1)
+texture = ExtResource("4_3smsa")
 
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=718141887]
 position = Vector2(1.1368684e-13, -22.000008)

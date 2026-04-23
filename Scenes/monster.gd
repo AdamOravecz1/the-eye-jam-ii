@@ -37,7 +37,7 @@ func _physics_process(delta):
 			# opposite direction → slow down before turning
 			velocity.x = move_toward(velocity.x, target_speed, deceleration * delta)
 
-		move_and_slide()
+	move_and_slide()
 
 
 func _on_hitbox_area_entered(area: Area2D) -> void:
@@ -45,6 +45,11 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 
 	if health <= 0:
 		$BodyPivot/HeadPivot/Head.frame = 4
-		$CollisionShape2D.set_deferred("disabled", true)
+
+		
+		collision_layer = 1 << 2
+		collision_mask = 1 << 2
+		velocity.x = 0
+
 		$Hitbox/CollisionShape2D.set_deferred("disabled", true)
 		$AnimationPlayer.play("Death")

@@ -29,6 +29,7 @@ var recoil_rotation := 0.0
 
 @onready var weapon: AnimatedSprite2D = $WeaponAnchorPoint/RecoilAnchorPoint/Weapon
 @onready var weapon_anchor = $WeaponAnchorPoint
+@onready var muzzle_flash = $WeaponAnchorPoint/RecoilAnchorPoint/Weapon/BarrelEnd/PointLight2D
 
 var alive = true
 
@@ -76,7 +77,10 @@ func get_input():
 		faster_fall = true
 		
 	# shoot
-	if Input.is_action_just_pressed("shoot") and loaded_in > 0:
+	if Input.is_action_just_pressed("shoot") and loaded_in > 0 and not reloading:
+		muzzle_flash.visible = true
+		await get_tree().process_frame
+		muzzle_flash.visible = false
 		loaded_in -= 1
 		weapon.play("shoot")
 		update_ammo_count()
@@ -88,6 +92,7 @@ func get_input():
 	
 	# reload
 	if Input.is_action_just_pressed("reload") and loaded_in < 8:
+		reloading = true
 		weapon.position.x = 30
 		await get_tree().create_timer(1.0, false).timeout
 		var needed = 8 - loaded_in
@@ -101,6 +106,7 @@ func get_input():
 	
 		weapon.position.x = 41
 		update_ammo_count()
+		reloading = false
 		
 	if Input.is_action_just_pressed("death"):
 		death()
