@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+const dead_head_scene := preload("res://Scenes/dead_head.tscn")
+
 signal shoot(pos, dir)
 
 @export_group('move')
@@ -28,13 +30,19 @@ var recoil_rotation := 0.0
 @onready var weapon: AnimatedSprite2D = $WeaponAnchorPoint/RecoilAnchorPoint/Weapon
 @onready var weapon_anchor = $WeaponAnchorPoint
 
-func _process(delta):
+var alive = true
 
-	get_input()
+var ammo = 9
+var loaded_in = 8
+var reloading = false
+
+func _process(delta):
 	apply_gravity(delta)
-	apply_movement(delta)
-	rotate_weapon()
-	update_recoil(delta)
+	if alive:
+		get_input()
+		apply_movement(delta)
+		rotate_weapon()
+		update_recoil(delta)
 	move_and_slide()
 		
 	
@@ -68,13 +76,34 @@ func get_input():
 		faster_fall = true
 		
 	# shoot
-	if Input.is_action_just_pressed("shoot"):
+	if Input.is_action_just_pressed("shoot") and loaded_in > 0:
+		loaded_in -= 1
 		weapon.play("shoot")
+		update_ammo_count()
 		shoot.emit($WeaponAnchorPoint/RecoilAnchorPoint/Weapon/BarrelEnd.global_position, weapon_anchor.rotation + $WeaponAnchorPoint/RecoilAnchorPoint.rotation )
 		if weapon.flip_v:
 			recoil_rotation = recoil_angle
 		else:
 			recoil_rotation = -recoil_angle
+	
+	# reload
+	if Input.is_action_just_pressed("reload") and loaded_in < 8:
+		weapon.position.x = 30
+		await get_tree().create_timer(1.0, false).timeout
+		var needed = 8 - loaded_in
+		if needed <= 0:
+			return # already full
+
+		var to_load = min(needed, ammo)
+
+		loaded_in += to_load
+		ammo -= to_load
+	
+		weapon.position.x = 41
+		update_ammo_count()
+		
+	if Input.is_action_just_pressed("death"):
+		death()
 		
 
 func apply_gravity(delta):
@@ -118,5 +147,23 @@ func update_recoil(delta):
 	recoil_rotation = lerp(recoil_rotation, 0.0, recoil_speed * delta)
 	$WeaponAnchorPoint/RecoilAnchorPoint.rotation = recoil_rotation
 	
+func update_ammo_count():
+	$CanvasLayer/Ammo.text = str(ammo) + "/" + str(loaded_in)
+	
+func death():
+	print("death")
+	alive = false
+	body_sprite.play("dead")
+	$Head.visible = false
 
-		
+	var dead_head := dead_head_scene.instantiate()
+	add_child(dead_head)
+	dead_head.position.y -= 32
+
+
+	var random_x := randf_range(-100, 100)
+	var upward := randf_range(-200, -350)
+
+	dead_head.apply_impulse(Vector2(random_x, upward))
+	
+	

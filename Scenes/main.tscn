@@ -207,7 +207,8 @@ texture = ExtResource("4_6bp64")
 
 [sub_resource type="TileSet" id="TileSet_kry3j"]
 occlusion_layer_0/light_mask = 1
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 5
+physics_layer_0/collision_mask = 5
 sources/1 = SubResource("TileSetAtlasSource_8gbba")
 sources/2 = SubResource("TileSetAtlasSource_kry3j")
 sources/3 = SubResource("TileSetAtlasSource_344ge")
@@ -638,127 +639,127 @@ vframes = 2
 [node name="Light6" type="Sprite2D" parent="FG/Design" unique_id=854388432]
 modulate = Color(0.99215686, 0.99215686, 0.99215686, 1)
 material = SubResource("ShaderMaterial_wsu2k")
-position = Vector2(3337, -167)
+position = Vector2(3335, -167)
 texture = ExtResource("10_fdnlq")
 
 [node name="Light30" type="Sprite2D" parent="FG/Design" unique_id=741270520]
 material = SubResource("ShaderMaterial_wsu2k")
-position = Vector2(3127, -167)
+position = Vector2(3125, -167)
 texture = ExtResource("10_fdnlq")
 
 [node name="Light7" type="Sprite2D" parent="FG/Design" unique_id=2120456293]
 material = SubResource("ShaderMaterial_wsu2k")
-position = Vector2(3591, -167)
+position = Vector2(3589, -167)
 texture = ExtResource("10_fdnlq")
 
 [node name="Light8" type="Sprite2D" parent="FG/Design" unique_id=711700650]
 material = SubResource("ShaderMaterial_wsu2k")
-position = Vector2(3719, -167)
+position = Vector2(3717, -167)
 texture = ExtResource("10_fdnlq")
 
 [node name="Light9" type="Sprite2D" parent="FG/Design" unique_id=1407815204]
 material = SubResource("ShaderMaterial_wsu2k")
-position = Vector2(3847, -167)
+position = Vector2(3845, -167)
 texture = ExtResource("10_fdnlq")
 
 [node name="Light10" type="Sprite2D" parent="FG/Design" unique_id=2090995840]
 material = SubResource("ShaderMaterial_wsu2k")
-position = Vector2(3335, 25)
+position = Vector2(3333, 25)
 texture = ExtResource("10_fdnlq")
 
 [node name="Light11" type="Sprite2D" parent="FG/Design" unique_id=1028495051]
 material = SubResource("ShaderMaterial_wsu2k")
-position = Vector2(3463, 25)
+position = Vector2(3461, 25)
 texture = ExtResource("10_fdnlq")
 
 [node name="Light12" type="Sprite2D" parent="FG/Design" unique_id=1407697441]
 material = SubResource("ShaderMaterial_wsu2k")
-position = Vector2(3591, 25)
+position = Vector2(3589, 25)
 texture = ExtResource("10_fdnlq")
 
 [node name="Light13" type="Sprite2D" parent="FG/Design" unique_id=2061541668]
 material = SubResource("ShaderMaterial_wsu2k")
-position = Vector2(3719, 25)
+position = Vector2(3717, 25)
 texture = ExtResource("10_fdnlq")
 
 [node name="Light14" type="Sprite2D" parent="FG/Design" unique_id=867101434]
 material = SubResource("ShaderMaterial_wsu2k")
-position = Vector2(2744, -167)
+position = Vector2(2742, -167)
 texture = ExtResource("10_fdnlq")
 
 [node name="Light15" type="Sprite2D" parent="FG/Design" unique_id=1851353920]
 material = SubResource("ShaderMaterial_wsu2k")
-position = Vector2(2616, -167)
+position = Vector2(2614, -167)
 texture = ExtResource("10_fdnlq")
 
 [node name="Light16" type="Sprite2D" parent="FG/Design" unique_id=876521326]
 material = SubResource("ShaderMaterial_wsu2k")
-position = Vector2(2407, -167)
+position = Vector2(2405, -167)
 texture = ExtResource("10_fdnlq")
 
 [node name="Light17" type="Sprite2D" parent="FG/Design" unique_id=336460013]
 material = SubResource("ShaderMaterial_wsu2k")
-position = Vector2(2279, -167)
+position = Vector2(2277, -167)
 texture = ExtResource("10_fdnlq")
 
 [node name="Light19" type="Sprite2D" parent="FG/Design" unique_id=98788313]
 material = SubResource("ShaderMaterial_wsu2k")
-position = Vector2(2024, -167)
+position = Vector2(2022, -167)
 texture = ExtResource("10_fdnlq")
 
 [node name="Light20" type="Sprite2D" parent="FG/Design" unique_id=1834111257]
 material = SubResource("ShaderMaterial_wsu2k")
-position = Vector2(1895, -167)
+position = Vector2(1893, -167)
 texture = ExtResource("10_fdnlq")
 
 [node name="Light21" type="Sprite2D" parent="FG/Design" unique_id=1064988284]
 material = SubResource("ShaderMaterial_wsu2k")
-position = Vector2(2615, 25)
+position = Vector2(2613, 25)
 texture = ExtResource("10_fdnlq")
 
 [node name="Light22" type="Sprite2D" parent="FG/Design" unique_id=1384476062]
 material = SubResource("ShaderMaterial_wsu2k")
-position = Vector2(2407, 25)
+position = Vector2(2405, 25)
 texture = ExtResource("10_fdnlq")
 
 [node name="Light23" type="Sprite2D" parent="FG/Design" unique_id=701010120]
 material = SubResource("ShaderMaterial_wsu2k")
-position = Vector2(2023, 25)
+position = Vector2(2021, 25)
 texture = ExtResource("10_fdnlq")
 
 [node name="Light24" type="Sprite2D" parent="FG/Design" unique_id=1110076985]
 material = SubResource("ShaderMaterial_wsu2k")
-position = Vector2(1895, 25)
+position = Vector2(1893, 25)
 texture = ExtResource("10_fdnlq")
 
 [node name="Light25" type="Sprite2D" parent="FG/Design" unique_id=1270436073]
 material = SubResource("ShaderMaterial_wsu2k")
-position = Vector2(1687, 25)
+position = Vector2(1685, 25)
 texture = ExtResource("10_fdnlq")
 
 [node name="Light26" type="Sprite2D" parent="FG/Design" unique_id=344365743]
 material = SubResource("ShaderMaterial_wsu2k")
-position = Vector2(1559, 25)
+position = Vector2(1557, 25)
 texture = ExtResource("10_fdnlq")
 
 [node name="Light27" type="Sprite2D" parent="FG/Design" unique_id=1789213385]
 material = SubResource("ShaderMaterial_wsu2k")
-position = Vector2(1431, 25)
+position = Vector2(1429, 25)
 texture = ExtResource("10_fdnlq")
 
 [node name="Light28" type="Sprite2D" parent="FG/Design" unique_id=852390970]
 material = SubResource("ShaderMaterial_wsu2k")
-position = Vector2(1303, 25)
+position = Vector2(1301, 25)
 texture = ExtResource("10_fdnlq")
 
 [node name="Light29" type="Sprite2D" parent="FG/Design" unique_id=454496591]
 material = SubResource("ShaderMaterial_wsu2k")
-position = Vector2(1175, 25)
+position = Vector2(1173, 25)
 texture = ExtResource("10_fdnlq")
 
 [node name="Light18" type="Sprite2D" parent="FG/Design" unique_id=1526702307]
 material = SubResource("ShaderMaterial_wsu2k")
-position = Vector2(2151, -167)
+position = Vector2(2149, -167)
 texture = ExtResource("10_fdnlq")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1893787319]

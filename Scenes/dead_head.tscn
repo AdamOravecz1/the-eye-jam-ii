@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://bhca04rjxjqyx"]
+
+[ext_resource type="Texture2D" uid="uid://b72rotnk5anci" path="res://Sprites/Player.png" id="1_xv025"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_x3wgy"]
+radius = 12.0
+
+[node name="DeadHead" type="RigidBody2D" unique_id=302441329]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=450049285]
+position = Vector2(0, -11)
+shape = SubResource("CircleShape2D_x3wgy")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=239750531]
+position = Vector2(0, -9)
+texture = ExtResource("1_xv025")
+hframes = 3
+vframes = 3
+frame = 5
