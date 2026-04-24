@@ -20,7 +20,7 @@ func _process(delta: float) -> void:
 func _pickup():
 	if not player.carrying:
 		if frame == 0:
-			main.spawn_monsters([9, 2, 3])
+			main.spawn_monsters([9, 1, 2])
 		if frame == 1:
 			main.spawn_monsters([1, 2, 3, 8])
 		if frame == 2:

@@ -11,12 +11,20 @@ var dir = 1
 
 @onready var player = get_tree().get_first_node_in_group("Player")
 
+func _ready() -> void:
+	$Timer.wait_time = randf_range(3, 6)
+
 func _physics_process(delta):
+
 	# Gravity
 	if not is_on_floor():
 		velocity.y += gravity * delta
 
 	if health > 0:
+		if velocity.x == 0:
+			$AnimationPlayer.play("Idle")
+		else:
+			$AnimationPlayer.play("Run")
 		var target_direction = sign(player.global_position.x - global_position.x)
 
 		
@@ -47,9 +55,14 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 		$BodyPivot/HeadPivot/Head.frame = 4
 
 		
-		collision_layer = 1 << 2
-		collision_mask = 1 << 2
+		collision_layer = 1 << 5
+		collision_mask = 1 << 5
 		velocity.x = 0
 
 		$Hitbox/CollisionShape2D.set_deferred("disabled", true)
 		$AnimationPlayer.play("Death")
+
+
+func _on_timer_timeout() -> void:
+	if health > 0:
+		$Growl.play()

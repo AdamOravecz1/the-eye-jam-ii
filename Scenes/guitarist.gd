@@ -3,6 +3,7 @@ extends Area2D
 @onready var speech_bubble: Label = $SpeechBubble/Speech
 @onready var interaction_area: InteractionArea = $InteractionArea
 @onready var player = get_tree().get_first_node_in_group("Player")
+@onready var main = get_tree().get_first_node_in_group("Main")
 
 var iteration = 0
 
@@ -36,23 +37,33 @@ func _ready():
 	if not Engine.is_editor_hint():
 		interaction_area.interact = Callable(self, "_talk")
 	
+var audio_tweens = {}
+
 func _talk():
+	main.delete_monsters()
+
 	player.carrying = false
+
+	fade_out_audio($Song)
+	if current_line == 1:
+		fade_in_audio($Talk)
+
 	if not speech.has(current_line):
 		return
 
 	$SpeechBubble.visible = true
 	var line = speech[current_line]
-
-	speech_bubble.text = line[0]
-
+	await type_text(speech_bubble, line[0], 0.03)
 	var next = line[1]
 
-
 	if str(next) == "end":
+		# END talking → fade IN background
+		fade_in_audio($Song)
+		fade_out_audio($Talk)
+
 		$SpeechBubble.visible = false
 		$InteractionArea/CollisionShape2D.set_deferred("disabled", true)
-		current_line = -1  # or reset to 1 if you want looping
+		current_line = -1
 	else:
 		current_line = next
 		
@@ -67,3 +78,33 @@ func next():
 		speech = speech2
 		$AnimatedSprite2D.play("uber")
 		
+		
+func fade_out_audio(audio):
+	if audio_tweens.has(audio):
+		audio_tweens[audio].kill()
+
+	var tween = create_tween()
+	audio_tweens[audio] = tween
+
+	tween.tween_property(audio, "volume_db", -80, 0.5)
+	tween.tween_callback(audio.stop)
+	
+	
+func fade_in_audio(audio):
+	if audio_tweens.has(audio):
+		audio_tweens[audio].kill()
+
+	audio.volume_db = -80
+	audio.play()
+
+	var tween = create_tween()
+	audio_tweens[audio] = tween
+
+	tween.tween_property(audio, "volume_db", 0, 0.5)
+	
+func type_text(label: Label, text: String, speed := 0.03) -> void:
+	label.text = ""
+
+	for i in text.length():
+		label.text += text[i]
+		await get_tree().create_timer(speed).timeout

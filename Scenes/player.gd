@@ -33,6 +33,9 @@ var recoil_rotation := 0.0
 
 @onready var geiger_counter_needle: Sprite2D = $CanvasLayer/GeigerCounterNeedle
 var wobble_time := 0.0
+var beep_timer := 0.0
+var beep_interval := 1.0
+
 var carrying = false
 
 var alive = true
@@ -41,10 +44,25 @@ var ammo = 9
 var loaded_in = 8
 var reloading = false
 
+var breathing_delay := 0.0
+var breathing_active := false
+
+func _ready():
+	body_sprite.animation_looped.connect(_on_run_looped)
+
 func _process(delta):
 	geiger_counter(delta)
 	apply_gravity(delta)
 	if alive:
+		if velocity.x != 0:
+			breathing_delay += delta
+
+			if breathing_delay >= 3.0 and not breathing_active:
+				breathing_active = true
+				_play_breath()
+		else:
+			breathing_delay = 0.0
+			breathing_active = false
 		get_input()
 		apply_movement(delta)
 		rotate_weapon()
@@ -59,11 +77,16 @@ func get_input():
 		body_sprite.flip_h = false
 	elif direction.x == -1.0:
 		body_sprite.flip_h = true
+		
+	if Input.is_action_just_pressed("left") or Input.is_action_just_pressed("right"):
+		$Walking.pitch_scale = randf_range(0.9, 1.1)
+		$Walking.play()
 	
 	if not is_on_floor():
 		body_sprite.play("jump")
 		head_sprite.play("jump")
 	elif direction.x != 0.0:
+
 		body_sprite.play("run")
 		head_sprite.play("run")
 	else:
@@ -84,6 +107,7 @@ func get_input():
 	# shoot
 	if Input.is_action_just_pressed("shoot") and loaded_in > 0 and not reloading:
 		muzzle_flash.visible = true
+		play_shot()
 		await get_tree().process_frame
 		muzzle_flash.visible = false
 		loaded_in -= 1
@@ -94,9 +118,12 @@ func get_input():
 			recoil_rotation = recoil_angle
 		else:
 			recoil_rotation = -recoil_angle
+	if Input.is_action_just_pressed("shoot") and loaded_in == 0:
+		$Click.play()
 	
 	# reload
 	if Input.is_action_just_pressed("reload") and loaded_in < 8:
+		$Reload.play()
 		reloading = true
 		weapon.position.x = 30
 		await get_tree().create_timer(1.0, false).timeout
@@ -129,8 +156,9 @@ func apply_movement(delta):
 		velocity.x = move_toward(velocity.x, direction.x * speed, acceleration * delta)
 	else:
 		velocity.x = move_toward(velocity.x, 0, friction * delta)
-
 	
+
+
 	# jump 
 	if jump or $Timers/JumpBuffer.time_left and is_on_floor():
 		velocity.y = -jump_strength
@@ -162,22 +190,24 @@ func update_ammo_count():
 	$CanvasLayer/Ammo.text = str(ammo) + "/" + str(loaded_in)
 	
 func death():
-	velocity.x = 0
-	print("death")
-	alive = false
-	body_sprite.play("dead")
-	$Head.visible = false
+	if alive:
+		$Death.play()
+		velocity.x = 0
+		print("death")
+		alive = false
+		body_sprite.play("dead")
+		$Head.visible = false
 
-	await get_tree().process_frame
-	var dead_head := dead_head_scene.instantiate()
-	add_child(dead_head)
-	dead_head.position.y -= 32
-	$GPUParticles2D.emitting = true
+		await get_tree().process_frame
+		var dead_head := dead_head_scene.instantiate()
+		add_child(dead_head)
+		dead_head.position.y -= 32
+		$GPUParticles2D.emitting = true
 
-	var random_x := randf_range(-100, 100)
-	var upward := randf_range(-200, -350)
+		var random_x := randf_range(-100, 100)
+		var upward := randf_range(-200, -350)
 
-	dead_head.apply_impulse(Vector2(random_x, upward))
+		dead_head.apply_impulse(Vector2(random_x, upward))
 	
 	
 func get_closest_item():
@@ -197,30 +227,72 @@ func geiger_counter(delta):
 	wobble_time += delta
 	
 	var dist = get_closest_item()
-	
 	if dist == null:
 		return
 
-	
 	dist = clamp(dist, 0, 200)
-	
 	var t = 1.0 - (dist / 200.0)
-	
+
+	# Needle logic (unchanged)
 	var base_angle = lerp(-35.0, 35.0, t)
-	
 	var wobble_strength = lerp(1.0, 1.5, t)
-	
 	var wobble_speed = lerp(2.0, 80.0, t)
-	
 	var wobble = sin(wobble_time * wobble_speed) * wobble_strength
+
+	beep_interval = lerp(1.0, 0.05, t) # far = slow, close = fast
+	$Geiger.pitch_scale = lerp(0.9, 1.1, t)
 	
 	if carrying:
 		base_angle = 35
 		wobble = sin(wobble_time * 80) * 1.5
-	
+		beep_interval = 0.09
+		$Geiger.pitch_scale = 1.1
+
 	geiger_counter_needle.rotation_degrees = base_angle + wobble
+
+
+
+	
+	beep_timer -= delta
+	if beep_timer <= 0.0:
+		beep_timer = beep_interval
+		
+		$Geiger.play()
 
 
 func _on_hitbox_body_entered(body: Node2D) -> void:
 	if alive:
 		death()
+		
+func _on_run_looped():
+	if body_sprite.animation == "run":
+		$Walking.pitch_scale = randf_range(0.9, 1.1)
+		$Walking.play()
+
+func play_shot():
+	var p = AudioStreamPlayer2D.new()
+	p.stream = $Shot.stream
+	add_child(p)
+
+	p.pitch_scale = randf_range(0.95, 1.05)
+	p.play()
+
+	p.finished.connect(_on_shot_finished.bind(p))
+	
+func _on_shot_finished(p):
+	p.queue_free()
+	
+func _play_breath():
+	if not breathing_active:
+		return
+
+	$Breathing.play()
+
+	# wait until sound finishes, then restart if still active
+	$Breathing.finished.connect(_on_breath_finished, CONNECT_ONE_SHOT)
+
+func _on_breath_finished():
+	if breathing_active and velocity.x != 0:
+		_play_breath()
+	else:
+		breathing_active = false

@@ -14,8 +14,14 @@
 [ext_resource type="Texture2D" uid="uid://dti2tfu7xd3gh" path="res://Sprites/PaksSign.png" id="9_6iyac"]
 [ext_resource type="Texture2D" uid="uid://dgqdp75gqmrl1" path="res://Sprites/WindowLight.png" id="10_fdnlq"]
 [ext_resource type="Shader" uid="uid://by5tfty56bpbv" path="res://Shaders/light.gdshader" id="13_jkdf5"]
+[ext_resource type="AudioStream" uid="uid://dscehc4wvitkn" path="res://Audio/camp_fire.wav" id="14_h1bgf"]
 [ext_resource type="PackedScene" uid="uid://dc6lxblrpilpc" path="res://Scenes/relic.tscn" id="16_k12tt"]
 [ext_resource type="Texture2D" uid="uid://34pu2kl517c0" path="res://Sprites/OutsideLight.png" id="17_h1bgf"]
+[ext_resource type="AudioStream" uid="uid://b52v0f8bmbvhh" path="res://Audio/scary_sound1.wav" id="18_ee4r6"]
+[ext_resource type="AudioStream" uid="uid://dkoqws26vydbc" path="res://Audio/scary_sound2.wav" id="19_gt3je"]
+[ext_resource type="AudioStream" uid="uid://c4gy4mmoxyouo" path="res://Audio/scary_sound3.wav" id="20_3pmx8"]
+[ext_resource type="AudioStream" uid="uid://3bhcqokdn7ea" path="res://Audio/scary_sound4.wav" id="21_u50mg"]
+[ext_resource type="AudioStream" uid="uid://cp2mfhogpasut" path="res://Audio/scary_sound5.wav" id="22_cbgmd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8gbba"]
 texture = ExtResource("2_8gbba")
@@ -208,8 +214,8 @@ texture = ExtResource("4_6bp64")
 
 [sub_resource type="TileSet" id="TileSet_kry3j"]
 occlusion_layer_0/light_mask = 1
-physics_layer_0/collision_layer = 13
-physics_layer_0/collision_mask = 13
+physics_layer_0/collision_layer = 45
+physics_layer_0/collision_mask = 45
 sources/1 = SubResource("TileSetAtlasSource_8gbba")
 sources/2 = SubResource("TileSetAtlasSource_kry3j")
 sources/3 = SubResource("TileSetAtlasSource_344ge")
@@ -245,6 +251,9 @@ animations = [{
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k12tt"]
 size = Vector2(56, 164)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h1bgf"]
+size = Vector2(35, 125)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wsu2k"]
 shader = ExtResource("13_jkdf5")
@@ -619,10 +628,12 @@ tile_set = SubResource("TileSet_kry3j")
 [node name="Entitis" type="Node2D" parent="Main" unique_id=456509761]
 
 [node name="Player" parent="Main/Entitis" unique_id=663725910 instance=ExtResource("1_jjgbg")]
-position = Vector2(3535, -170)
+position = Vector2(164, 43)
 
 [node name="Guitarist" parent="Main/Entitis" unique_id=6708523 instance=ExtResource("5_21xkr")]
 position = Vector2(369, 32)
+
+[node name="Monsters" type="Node2D" parent="Main" unique_id=1122037239]
 
 [node name="Design" type="Node2D" parent="Main" unique_id=84200484]
 
@@ -631,12 +642,19 @@ position = Vector2(316, 76)
 sprite_frames = SubResource("SpriteFrames_ynf5e")
 autoplay = "default"
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Main/Design" unique_id=876518799]
+stream = ExtResource("14_h1bgf")
+volume_db = 10.0
+autoplay = true
+max_distance = 1000.0
+attenuation = 1.865332
+
 [node name="Blockers" type="Node2D" parent="Main" unique_id=1099209592]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Main/Blockers" unique_id=337897655]
 position = Vector2(1794, -197)
 collision_layer = 4
-collision_mask = 4
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Main/Blockers/StaticBody2D" unique_id=493588725]
 position = Vector2(-18, 11)
@@ -645,16 +663,34 @@ shape = SubResource("RectangleShape2D_k12tt")
 [node name="StaticBody2D2" type="StaticBody2D" parent="Main/Blockers" unique_id=465566655]
 position = Vector2(1081, -6)
 collision_layer = 4
-collision_mask = 4
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Main/Blockers/StaticBody2D2" unique_id=2094567088]
 position = Vector2(-18, 11)
 shape = SubResource("RectangleShape2D_k12tt")
 
+[node name="Area2D" type="Area2D" parent="Main/Blockers" unique_id=798492896]
+position = Vector2(1116, -28)
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Main/Blockers/Area2D" unique_id=1540415496]
+position = Vector2(-7.5, 52.5)
+shape = SubResource("RectangleShape2D_h1bgf")
+
+[node name="Area2D2" type="Area2D" parent="Main/Blockers" unique_id=849554016]
+position = Vector2(1829, -219)
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Main/Blockers/Area2D2" unique_id=2020778734]
+position = Vector2(-7.5, 52.5)
+shape = SubResource("RectangleShape2D_h1bgf")
+
 [node name="FG" type="Node2D" parent="." unique_id=1837992757]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="FG" unique_id=1401637328]
-tile_map_data = PackedByteArray("AAADAAUAAgABAAAAAAAGAAUAAgABAAAAAAAIAAUAAgABAAAAAAD4/wUAAgABAAAAAAD8/wUAAgAAAAAAAADw/wUAAgAAAAAAAADu/wUAAgAAAAAAAAAPAAUAAgAAAAEAAAAgAAUAAgAAAAAAAAApAAUAAgAAAAAAAAAcAAUAAgAAAAMAAAARAAUAAgAAAAMAAAAuAAUAAgAAAAMAAAAmAAUAAgAAAAMAAAAhAAUAAgABAAIAAAAsAAUAAgABAAIAAAAKAAUAAgABAAIAAAD0/wUAAgACAAIAAADx/wUAAgACAAIAAAAEAAUAAgAAAAIAAADv/wUAAgAAAAIAAAD3/wUAAgAAAAEAAAAlAAUAAgACAAAAAADs/wUAAgACAAEAAABWAAUAAgABAAEAAABkAAUAAgABAAEAAABKAAUAAgACAAEAAAA=")
+tile_map_data = PackedByteArray("AAADAAUAAgABAAAAAAAGAAUAAgABAAAAAAAIAAUAAgABAAAAAAD4/wUAAgABAAAAAAD8/wUAAgAAAAAAAADw/wUAAgAAAAAAAADu/wUAAgAAAAAAAAAPAAUAAgAAAAEAAAAgAAUAAgAAAAAAAAApAAUAAgAAAAAAAAAcAAUAAgAAAAMAAAARAAUAAgAAAAMAAAAuAAUAAgAAAAMAAAAmAAUAAgAAAAMAAAAhAAUAAgABAAIAAAAsAAUAAgABAAIAAAAKAAUAAgABAAIAAAD0/wUAAgACAAIAAADx/wUAAgACAAIAAAAEAAUAAgAAAAIAAADv/wUAAgAAAAIAAAD3/wUAAgAAAAEAAAAlAAUAAgACAAAAAADs/wUAAgACAAEAAABWAAUAAgABAAEAAABkAAUAAgABAAEAAABKAAUAAgAAAAAAAAAzAAUAAgABAAAAAAA9AAUAAgABAAAAAABNAPn/AgABAAAAAABZAPn/AgABAAAAAABnAPn/AgABAAAAAABdAPn/AgAAAAAAAABTAPn/AgAAAAAAAABAAAUAAgAAAAAAAABHAAUAAgAAAAIAAABRAPn/AgAAAAIAAABqAPn/AgAAAAIAAAA3AAUAAgAAAAIAAABUAPn/AgAAAAEAAABwAPn/AgAAAAEAAABNAAUAAgAAAAEAAACaABEAAgAAAAEAAAC1ABEAAgAAAAEAAADMABEAAgAAAAEAAADlABEAAgAAAAEAAADXABEAAgACAAAAAADvABEAAgACAAAAAADIABEAAgABAAEAAAC3ABEAAgABAAEAAACiABEAAgABAAEAAADdABEAAgACAAEAAADkAAUAAgACAAEAAADYAAUAAgACAAEAAADqABEAAgABAAIAAADPABEAAgABAAIAAAClAAUAAgABAAIAAACrAPn/AgABAAIAAACdAPn/AgABAAIAAABtAPn/AgABAAIAAAB0AO3/AgABAAIAAABjAPn/AgABAAIAAABeAPn/AgABAAIAAABPAPn/AgABAAIAAABHAPn/AgABAAIAAABsAPn/AgACAAIAAABWAPn/AgACAAIAAAAvAAUAAgACAAIAAAA1AAUAAgACAAIAAAA+AAUAAgACAAIAAABYAPn/AgAAAAMAAABlAPn/AgAAAAMAAADtABEAAgAAAAIAAADxAPn/AgACAAEAAADfAPn/AgACAAEAAADJAPn/AgACAAEAAADpAPn/AgABAAEAAAD3APn/AgABAAEAAAA=")
 tile_set = SubResource("TileSet_kry3j")
 
 [node name="Design" type="Node2D" parent="FG" unique_id=162361582]
@@ -838,4 +874,26 @@ material = SubResource("ShaderMaterial_b3802")
 position = Vector2(1004, -244.00002)
 texture = ExtResource("17_h1bgf")
 
+[node name="Sounds" type="Node2D" parent="." unique_id=2136238296]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Sounds" unique_id=786778558]
+stream = ExtResource("18_ee4r6")
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="Sounds" unique_id=1460606089]
+stream = ExtResource("19_gt3je")
+
+[node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="Sounds" unique_id=220872035]
+stream = ExtResource("20_3pmx8")
+
+[node name="AudioStreamPlayer4" type="AudioStreamPlayer" parent="Sounds" unique_id=793272269]
+stream = ExtResource("21_u50mg")
+
+[node name="AudioStreamPlayer5" type="AudioStreamPlayer" parent="Sounds" unique_id=1985132159]
+stream = ExtResource("22_cbgmd")
+
+[node name="Timer" type="Timer" parent="." unique_id=650375701]
+wait_time = 10.0
+one_shot = true
+
 [connection signal="shoot" from="Main/Entitis/Player" to="." method="_on_player_shoot"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

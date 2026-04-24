@@ -5,6 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://babs2a1gd7aw6" path="res://Scenes/interaction_area.tscn" id="2_iebjx"]
 [ext_resource type="Texture2D" uid="uid://cl81i84d7iqo" path="res://Sprites/SpeechBubble.png" id="4_1nc37"]
 [ext_resource type="FontFile" uid="uid://xnml6jyw0iwt" path="res://Font/PixelOperator.ttf" id="5_1nc37"]
+[ext_resource type="AudioStream" uid="uid://b5knujubsjsnu" path="res://Audio/EyeJam.wav" id="6_m8tld"]
+[ext_resource type="AudioStream" uid="uid://du6bjso43xkwv" path="res://Audio/talking.wav" id="7_paowv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iebjx"]
 size = Vector2(47, 87)
@@ -105,3 +107,12 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("5_1nc37")
 theme_override_font_sizes/font_size = 8
 text = "srtyu"
+
+[node name="Song" type="AudioStreamPlayer2D" parent="." unique_id=1532568823]
+stream = ExtResource("6_m8tld")
+autoplay = true
+max_distance = 1000.0
+attenuation = 1.8660665
+
+[node name="Talk" type="AudioStreamPlayer2D" parent="." unique_id=375091880]
+stream = ExtResource("7_paowv")
