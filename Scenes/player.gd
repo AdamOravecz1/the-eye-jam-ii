@@ -162,11 +162,13 @@ func update_ammo_count():
 	$CanvasLayer/Ammo.text = str(ammo) + "/" + str(loaded_in)
 	
 func death():
+	velocity.x = 0
 	print("death")
 	alive = false
 	body_sprite.play("dead")
 	$Head.visible = false
 
+	await get_tree().process_frame
 	var dead_head := dead_head_scene.instantiate()
 	add_child(dead_head)
 	dead_head.position.y -= 32
@@ -217,3 +219,8 @@ func geiger_counter(delta):
 		wobble = sin(wobble_time * 80) * 1.5
 	
 	geiger_counter_needle.rotation_degrees = base_angle + wobble
+
+
+func _on_hitbox_body_entered(body: Node2D) -> void:
+	if alive:
+		death()

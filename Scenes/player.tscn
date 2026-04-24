@@ -184,6 +184,9 @@ flatness = 0.5
 initial_velocity_max = 10.0
 gravity = Vector3(0, -98, 0)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3smsa"]
+size = Vector2(32, 80)
+
 [node name="Player" type="CharacterBody2D" unique_id=663725910 groups=["Player"]]
 light_mask = 3
 script = ExtResource("1_cvnsp")
@@ -277,3 +280,13 @@ position = Vector2(0, -37)
 emitting = false
 amount = 42
 process_material = SubResource("ParticleProcessMaterial_x3wgy")
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=773100640]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1203649617]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_3smsa")
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

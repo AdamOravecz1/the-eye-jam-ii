@@ -6,11 +6,17 @@
 [node name="InteractionManager" type="Node2D" unique_id=1151590980]
 script = ExtResource("1_g2bjo")
 
-[node name="Label" type="Label" parent="." unique_id=925775876]
-z_index = 100
-offset_right = 40.0
-offset_bottom = 23.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1391412254]
+layer = 4
+
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=925775876]
+top_level = true
+z_index = 20
+offset_left = 438.0
+offset_top = 194.0
+offset_right = 492.0
+offset_bottom = 217.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("2_g12pu")
 theme_override_font_sizes/font_size = 8
 text = "rtbrnhtj"
