@@ -40,6 +40,8 @@ func _ready():
 var audio_tweens = {}
 
 func _talk():
+	if iteration == 3:
+		ending()
 	main.delete_monsters()
 
 	player.carrying = false
@@ -73,10 +75,12 @@ func next():
 	$InteractionArea/CollisionShape2D.set_deferred("disabled", false)
 	if iteration == 1:
 		speech = speech1
-		$AnimatedSprite2D.play("mild")
 	elif iteration == 2:
 		speech = speech2
+		$AnimatedSprite2D.play("mild")
+	elif iteration == 3:
 		$AnimatedSprite2D.play("uber")
+
 		
 		
 func fade_out_audio(audio):
@@ -104,7 +108,16 @@ func fade_in_audio(audio):
 	
 func type_text(label: Label, text: String, speed := 0.03) -> void:
 	label.text = ""
+	if iteration != 3:
+		for i in text.length():
+			label.text += text[i]
+			await get_tree().create_timer(speed).timeout
+		
+		
+func ending():
+	main.ending()
+	
 
-	for i in text.length():
-		label.text += text[i]
-		await get_tree().create_timer(speed).timeout
+
+func _on_area_entered(area: Area2D) -> void:
+	main.ending2()

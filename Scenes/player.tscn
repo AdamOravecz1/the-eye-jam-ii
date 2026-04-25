@@ -281,6 +281,16 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("6_x3wgy")
 text = "9/8"
 
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=572875559]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 774.0
+offset_bottom = 605.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+
 [node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1980717853]
 modulate = Color(1, 0, 0, 1)
 position = Vector2(0, -37)
@@ -317,4 +327,24 @@ stream = ExtResource("13_ukyrk")
 [node name="Breathing" type="AudioStreamPlayer" parent="." unique_id=296698925]
 stream = ExtResource("14_7dp3o")
 
+[node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=195369604]
+
+[node name="Button" type="Button" parent="CanvasLayer2" unique_id=70150889]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -38.5
+offset_top = -15.5
+offset_right = 38.5
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("6_x3wgy")
+disabled = true
+text = "Retry"
+
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="pressed" from="CanvasLayer2/Button" to="." method="_on_button_pressed"]

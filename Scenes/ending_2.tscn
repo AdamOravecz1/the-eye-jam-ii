@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://lt5l7mc5x4ak"]
+
+[ext_resource type="Script" uid="uid://cymtn3875tqi5" path="res://Scenes/ending_2.gd" id="1_mu2r4"]
+[ext_resource type="AudioStream" uid="uid://b5knujubsjsnu" path="res://Audio/EyeJam.wav" id="2_ruqw8"]
+[ext_resource type="FontFile" uid="uid://xnml6jyw0iwt" path="res://Font/PixelOperator.ttf" id="3_vj1kt"]
+
+[node name="Ending2" type="CanvasLayer" unique_id=558164687]
+script = ExtResource("1_mu2r4")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=276004377]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 853.0
+offset_bottom = 596.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(18.892157, 18.892157, 18.892157, 0)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=437790758]
+stream = ExtResource("2_ruqw8")
+volume_db = -80.0
+autoplay = true
+
+[node name="Button" type="Button" parent="." unique_id=201119756]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -51.0
+offset_top = -12.0
+offset_right = 51.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_vj1kt")
+disabled = true
+text = "Restart"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

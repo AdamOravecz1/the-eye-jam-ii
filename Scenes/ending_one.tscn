@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://ddyg1xuimfo1b"]
+
+[ext_resource type="Texture2D" uid="uid://dvfkgnnl63gba" path="res://Sprites/mushroom.jpg" id="1_2uqd8"]
+[ext_resource type="Script" uid="uid://sr5rki4pbci6" path="res://Scenes/ending_one.gd" id="1_ir547"]
+[ext_resource type="AudioStream" uid="uid://b1esgerosx23w" path="res://Audio/ending.wav" id="3_28oh5"]
+[ext_resource type="FontFile" uid="uid://xnml6jyw0iwt" path="res://Font/PixelOperator.ttf" id="4_1iawf"]
+
+[node name="EndingOne" type="CanvasLayer" unique_id=1883232592]
+script = ExtResource("1_ir547")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1155579405]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 853.0
+offset_bottom = 596.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(18.892157, 18.892157, 18.892157, 0)
+
+[node name="Control" type="Control" parent="." unique_id=2035854740]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Control" unique_id=16841821]
+scale = Vector2(0.485, 0.365)
+texture = ExtResource("1_2uqd8")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=169793210]
+stream = ExtResource("3_28oh5")
+autoplay = true
+
+[node name="Button" type="Button" parent="." unique_id=606006813]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -51.0
+offset_top = -12.0
+offset_right = 51.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_1iawf")
+disabled = true
+text = "Restart"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

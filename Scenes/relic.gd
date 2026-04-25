@@ -19,6 +19,7 @@ func _process(delta: float) -> void:
 	
 func _pickup():
 	if not player.carrying:
+
 		if frame == 0:
 			main.spawn_monsters([9, 1, 2])
 		if frame == 1:
@@ -26,6 +27,7 @@ func _pickup():
 		if frame == 2:
 			main.spawn_monsters([7, 8, 5])
 		player.carrying = true
+		player.add_relic()
 		guitar.next()
 		await get_tree().process_frame
 		queue_free()

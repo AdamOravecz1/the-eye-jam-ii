@@ -1,6 +1,8 @@
 extends CharacterBody2D
 
 const dead_head_scene := preload("res://Scenes/dead_head.tscn")
+@onready var main = get_tree().get_first_node_in_group("Main")
+
 
 signal shoot(pos, dir)
 
@@ -37,6 +39,7 @@ var beep_timer := 0.0
 var beep_interval := 1.0
 
 var carrying = false
+var relic_amount = 0
 
 var alive = true
 
@@ -57,7 +60,7 @@ func _process(delta):
 		if velocity.x != 0:
 			breathing_delay += delta
 
-			if breathing_delay >= 3.0 and not breathing_active:
+			if breathing_delay >= 10.0 and not breathing_active:
 				breathing_active = true
 				_play_breath()
 		else:
@@ -122,7 +125,7 @@ func get_input():
 		$Click.play()
 	
 	# reload
-	if Input.is_action_just_pressed("reload") and loaded_in < 8:
+	if Input.is_action_just_pressed("reload") and loaded_in < 8 and not reloading:
 		$Reload.play()
 		reloading = true
 		weapon.position.x = 30
@@ -208,7 +211,23 @@ func death():
 		var upward := randf_range(-200, -350)
 
 		dead_head.apply_impulse(Vector2(random_x, upward))
-	
+		
+		await get_tree().create_timer(3.0, false).timeout
+		$CanvasLayer2/Button.disabled = false
+		
+		var tween = create_tween()
+		tween.tween_property($CanvasLayer/ColorRect, "color", Color(0, 0, 0, 1), 2.0)
+				
+		var master_idx = AudioServer.get_bus_index("Master")
+		tween.parallel().tween_method(
+			func(db): AudioServer.set_bus_volume_db(master_idx, db),
+			0.0,    # start volume (0 dB)
+			-80.0,  # silent
+			2.0
+		)
+		
+		tween.parallel().tween_property($CanvasLayer2/Button, "modulate", Color(1, 1, 1, 1), 2.0)
+		
 	
 func get_closest_item():
 	var items = get_tree().get_nodes_in_group("items")
@@ -286,13 +305,35 @@ func _play_breath():
 	if not breathing_active:
 		return
 
-	$Breathing.play()
+	if not $Breathing.playing:
+		$Breathing.play()
 
-	# wait until sound finishes, then restart if still active
-	$Breathing.finished.connect(_on_breath_finished, CONNECT_ONE_SHOT)
+	if not $Breathing.finished.is_connected(_on_breath_finished):
+		$Breathing.finished.connect(_on_breath_finished, CONNECT_ONE_SHOT)
 
 func _on_breath_finished():
 	if breathing_active and velocity.x != 0:
 		_play_breath()
 	else:
 		breathing_active = false
+
+
+func _on_button_pressed() -> void:
+	var master_idx = AudioServer.get_bus_index("Master")
+	AudioServer.set_bus_volume_db(master_idx, 0) # back to normal
+
+	get_tree().reload_current_scene()
+	
+func add_relic():
+	relic_amount += 1
+	if relic_amount == 3:
+		var space_state = get_world_2d().direct_space_state
+		var query = PhysicsRayQueryParameters2D.create(global_position, global_position + Vector2(0, 1000))
+		var result = space_state.intersect_ray(query)
+
+		if result:
+			var floor_y = result.position.y
+			main.add_talking(Vector2(global_position.x + 200, floor_y - 57))
+		$CanvasLayer/ColorRect.color = Color(1,1,1,1)
+		var tween = create_tween()
+		tween.tween_property($CanvasLayer/ColorRect, "color", Color(0,0,0,0), 3.0) 
