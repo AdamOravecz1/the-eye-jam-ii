@@ -333,7 +333,7 @@ func add_relic():
 
 		if result:
 			var floor_y = result.position.y
-			main.add_talking(Vector2(global_position.x + 200, floor_y - 57))
+			main.add_talking(Vector2(global_position.x + 300, floor_y - 57))
 		$CanvasLayer/ColorRect.color = Color(1,1,1,1)
 		var tween = create_tween()
 		tween.tween_property($CanvasLayer/ColorRect, "color", Color(0,0,0,0), 3.0) 

@@ -74,6 +74,9 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_gges6"]
 radius = 48.010414
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_paowv"]
+radius = 495.00403
+
 [node name="Guitarist" type="Area2D" unique_id=6708523 groups=["Guitar"]]
 collision_layer = 0
 collision_mask = 2
@@ -119,4 +122,11 @@ attenuation = 1.8660665
 [node name="Talk" type="AudioStreamPlayer2D" parent="." unique_id=375091880]
 stream = ExtResource("7_paowv")
 
+[node name="BulletTaker" type="Area2D" parent="." unique_id=1306881740]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletTaker" unique_id=1715779929]
+shape = SubResource("CircleShape2D_paowv")
+
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="BulletTaker" to="." method="_on_bullet_taker_body_entered"]
+[connection signal="body_exited" from="BulletTaker" to="." method="_on_bullet_taker_body_exited"]

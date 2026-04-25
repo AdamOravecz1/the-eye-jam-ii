@@ -33,6 +33,22 @@ grow_vertical = 2
 scale = Vector2(0.485, 0.365)
 texture = ExtResource("1_2uqd8")
 
+[node name="Label" type="Label" parent="Control" unique_id=1692412512]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -368.0
+offset_top = -167.0
+offset_right = 368.0
+offset_bottom = -39.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_1iawf")
+theme_override_font_sizes/font_size = 128
+text = "The End"
+horizontal_alignment = 1
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=169793210]
 stream = ExtResource("3_28oh5")
 autoplay = true

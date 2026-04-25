@@ -13,7 +13,7 @@ config_version=5
 config/name="The Eye Jam II"
 run/main_scene="uid://bgpgswvgefua6"
 config/features=PackedStringArray("4.6", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="uid://dxjxdhw2ablj"
 
 [autoload]
 
@@ -23,6 +23,7 @@ InteractionManager="*uid://dyv1evf0quu1c"
 
 window/size/viewport_width=960
 window/size/viewport_height=540
+window/size/mode=1
 window/stretch/mode="viewport"
 window/stretch/aspect="ignore"
 mouse_cursor/custom_image="uid://b828fp6gr52ra"

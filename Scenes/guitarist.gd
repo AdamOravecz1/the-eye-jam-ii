@@ -121,3 +121,16 @@ func ending():
 
 func _on_area_entered(area: Area2D) -> void:
 	main.ending2()
+
+
+
+
+
+func _on_bullet_taker_body_exited(body: Node2D) -> void:
+	if body.name == "Player":
+		$CollisionShape2D.set_deferred("disabled", true)
+
+
+func _on_bullet_taker_body_entered(body: Node2D) -> void:
+	if body.name == "Player":
+		$CollisionShape2D.set_deferred("disabled", false)

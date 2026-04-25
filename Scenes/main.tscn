@@ -628,7 +628,7 @@ tile_set = SubResource("TileSet_kry3j")
 [node name="Entitis" type="Node2D" parent="Main" unique_id=456509761]
 
 [node name="Player" parent="Main/Entitis" unique_id=663725910 instance=ExtResource("1_jjgbg")]
-position = Vector2(164, 43)
+position = Vector2(122, 36)
 
 [node name="Guitarist" parent="Main/Entitis" unique_id=6708523 instance=ExtResource("5_21xkr")]
 position = Vector2(369, 32)

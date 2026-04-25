@@ -26,6 +26,10 @@ func _talk():
 
 	if not speech.has(current_line):
 		return
+		
+	if current_line == 4:
+		player.ammo += 1
+		player.update_ammo_count()
 
 
 	var line = speech[current_line]
@@ -51,6 +55,7 @@ func type_text(label: Label, text: String, speed := 0.03) -> void:
 
 
 func _on_area_entered(area: Area2D) -> void:
+	$CollisionShape2D.queue_free()
 	main.spawn_backup()
 	$SpeechBubble.visible = false
 	$AnimationPlayer.play("Death")

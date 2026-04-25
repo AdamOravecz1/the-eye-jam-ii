@@ -3,7 +3,7 @@ extends CanvasLayer
 func _ready() -> void:
 	$ColorRect.color = Color(1, 1, 1, 1)
 	var tween = create_tween()
-	tween.tween_property($Control/Sprite2D, "modulate", Color(1, 1, 1, 1,), 10.0)
+	tween.tween_property($Control, "modulate", Color(1, 1, 1, 1,), 10.0)
 	await get_tree().create_timer(3.0, false).timeout
 	var tween2 = create_tween()
 	$Button.disabled = false

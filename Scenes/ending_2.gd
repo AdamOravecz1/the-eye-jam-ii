@@ -10,6 +10,8 @@ func _ready() -> void:
 	var tween2 = create_tween()
 	$Button.disabled = false
 	tween2.tween_property($Button, "modulate", Color(1, 1, 1, 1,), 3.0)
+	tween2.parallel().tween_property($Label, "modulate", Color(1, 1, 1, 1,), 3.0)
+
 	
 
 func _on_button_pressed() -> void:
