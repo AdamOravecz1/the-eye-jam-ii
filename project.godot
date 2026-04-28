@@ -23,7 +23,7 @@ InteractionManager="*uid://dyv1evf0quu1c"
 
 window/size/viewport_width=960
 window/size/viewport_height=540
-window/size/mode=1
+window/size/mode=3
 window/stretch/mode="viewport"
 window/stretch/aspect="ignore"
 mouse_cursor/custom_image="uid://b828fp6gr52ra"
@@ -56,11 +56,6 @@ shoot={
 reload={
 "deadzone": 0.2,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":82,"key_label":0,"unicode":114,"location":0,"echo":false,"script":null)
-]
-}
-death={
-"deadzone": 0.2,
-"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194309,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
 ]
 }
 interact={

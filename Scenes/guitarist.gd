@@ -128,6 +128,15 @@ func _on_area_entered(area: Area2D) -> void:
 
 func _on_bullet_taker_body_exited(body: Node2D) -> void:
 	if body.name == "Player":
+		if current_line != -1 and current_line != 1:
+			# END talking → fade IN background
+			fade_in_audio($Song)
+			fade_out_audio($Talk)
+
+			$SpeechBubble.visible = false
+			$InteractionArea/CollisionShape2D.set_deferred("disabled", true)
+			current_line = -1
+		
 		$CollisionShape2D.set_deferred("disabled", true)
 
 

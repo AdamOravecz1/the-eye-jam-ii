@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const dead_head_scene := preload("res://Scenes/dead_head.tscn")
+@onready var dead_head_scene := preload("res://Scenes/dead_head.tscn")
 @onready var main = get_tree().get_first_node_in_group("Main")
 
 
@@ -52,6 +52,31 @@ var breathing_active := false
 
 func _ready():
 	body_sprite.animation_looped.connect(_on_run_looped)
+	# Pre-instantiate and free
+	var temp = dead_head_scene.instantiate()
+	add_child(temp)
+
+	# wait a frame so it fully enters the scene
+	await get_tree().process_frame
+
+	# trigger physics initialization
+	if temp is RigidBody2D:
+		temp.apply_impulse(Vector2.ZERO)
+
+	# wait another frame so physics actually processes it
+	await get_tree().process_frame
+
+	temp.queue_free()
+
+	# Prewarm particles
+	$GPUParticles2D.emitting = true
+	await get_tree().process_frame
+	$GPUParticles2D.emitting = false
+
+
+	# Prewarm audio
+	$Death.play()
+	$Death.stop()
 
 func _process(delta):
 	geiger_counter(delta)
@@ -143,9 +168,7 @@ func get_input():
 		update_ammo_count()
 		reloading = false
 		
-	if Input.is_action_just_pressed("death"):
-		death()
-		
+
 
 func apply_gravity(delta):
 	velocity.y += gravity * delta
@@ -196,7 +219,6 @@ func death():
 	if alive:
 		$Death.play()
 		velocity.x = 0
-		print("death")
 		alive = false
 		body_sprite.play("dead")
 		$Head.visible = false
